@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Analytics</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-top ion-padding-start ion-padding-end">
+  <div class="card">
+    <h5>Analytics</h5>
+    <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
+  </div>
+  <div style="margin-top: 50px;">
+    <h5>Task Status</h5>
+    <p-chart type="pie" [data]="pieData" [options]="pieChartOptions" [style]="{'width': '40%'}"></p-chart>
+  </div>
+</ion-content>

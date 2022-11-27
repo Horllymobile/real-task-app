@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add Task</ion-title>
+    <ion-buttons>
+      <ion-button (click)="close()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-top ion-padding-start ion-padding-end">
+  <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+    <ion-item lines="none" style="border-radius: 10px;">
+      <ion-input type="text" formControlName="title"></ion-input>
+    </ion-item>
+    <ion-item lines="none" class="ion-margin-top" style="border-radius: 10px;">
+      <ion-datetime-button datetime="start"></ion-datetime-button>
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime id="start" [min]="today" [value]="start" (ionChange)="onDateChange($event, 'start')">
+          </ion-datetime>
+        </ng-template>
+      </ion-modal>
+      <!-- <ion-input type="date" [min]="today" formControlName="start_date"></ion-input> -->
+    </ion-item>
+    <ion-item lines="none" class="ion-margin-top" style="border-radius: 10px;">
+      <ion-datetime-button datetime="end"></ion-datetime-button>
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime id="end" [min]="today" [value]="end" (ionChange)="onDateChange($event, 'end')"></ion-datetime>
+        </ng-template>
+      </ion-modal>
+      <!-- <ion-input type="date" [min]="today" formControlName="end_date"></ion-input> -->
+    </ion-item>
+    <ion-button [disabled]="form.invalid" type="submit" expand="block" class="ion-margin-top">Submit</ion-button>
+  </form>
+</ion-content>

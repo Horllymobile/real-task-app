@@ -1,0 +1,34 @@
+<ion-item-sliding [@fadeInRight]="true" class="ion-margin-top">
+  <ion-item>
+    <ion-label>
+      <h1>{{ item.name }}</h1>
+      <ion-text color="medium">
+        <p *ngIf="(!checkDueDate(item) && (item.status === todoStatus.DONE)) || item.status === todoStatus.DONE">
+          Date: {{ item.start_date | date }}</p>
+
+        <p *ngIf="(checkDueDate(item) && item.status !== todoStatus.DONE)"
+          [ngStyle]="{ 'color': checkDueDate(item) ? 'red': ''}">Dued date: {{ item.end_date
+          | date }}</p>
+      </ion-text>
+    </ion-label>
+    <ion-badge slot="end" color="secondary" *ngIf="item.status === todoStatus.PENDING">
+      <ion-icon name="reload-outline"></ion-icon>
+    </ion-badge>
+
+    <ion-badge slot="end" color="secondary" *ngIf="item.status === todoStatus.PROGRESS">
+      <ion-icon name="code-working"></ion-icon>
+    </ion-badge>
+
+    <ion-badge slot="end" color="success" *ngIf="item.status === todoStatus.DONE">
+      <ion-icon name="checkmark-outline"></ion-icon>
+    </ion-badge>
+  </ion-item>
+
+  <ion-item-options>
+    <ion-item-option (click)="markInProgress(item.id)" *ngIf="item.status === todoStatus.PENDING" color="secondary">Mark
+      In Progress</ion-item-option>
+    <ion-item-option (click)="markAsDone(item.id)" *ngIf="item.status === todoStatus.PROGRESS" color="success">Mark Done
+    </ion-item-option>
+    <ion-item-option (click)="deleteTodo(item.id)" color="danger">Delete</ion-item-option>
+  </ion-item-options>
+</ion-item-sliding>

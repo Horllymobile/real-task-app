@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Task List</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="openTodoForm()">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-start ion-padding-end">
+  <ion-searchbar (ionChange)="searchTodo($event)"></ion-searchbar>
+  <div style="display: flex; flex-direction: row; justify-content: start; gap: 5;">
+    <ion-chip (click)="onFilter()" [color]="chip === '' ? 'secondary' : ''">All</ion-chip>
+    <ion-chip (click)="onFilter(todoStatus.PENDING)" [color]="chip === todoStatus.PENDING ? 'secondary' : ''">{{
+      todoStatus.PENDING | titlecase }}</ion-chip>
+    <ion-chip (click)="onFilter(todoStatus.PROGRESS)" [color]="chip === todoStatus.PROGRESS ? 'secondary' : ''">
+      {{ todoStatus.PROGRESS | titlecase }}</ion-chip>
+    <ion-chip (click)="onFilter(todoStatus.DONE)" [color]="chip === todoStatus.DONE ? 'secondary' : ''">{{
+      todoStatus.DONE | titlecase }}</ion-chip>
+  </div>
+
+  <ion-list class="ion-margin-top" *ngIf="todos$ | async as todos">
+    <ion-list-header>All Task</ion-list-header>
+    <app-todo-item *ngFor="let todo of todos.data" [item]="todo"></app-todo-item>
+  </ion-list>
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

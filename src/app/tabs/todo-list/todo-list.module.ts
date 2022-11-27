@@ -1,22 +1,22 @@
+import { ComponentModule } from './../../component/component.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { TabsPageRoutingModule } from './tabs-routing.module';
+import { TodoListPageRoutingModule } from './todo-list-routing.module';
 
-import { TabsPage } from './tabs.page';
-import { ComponentModule } from '../component/component.module';
+import { TodoListPage } from './todo-list.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    TabsPageRoutingModule,
+    TodoListPageRoutingModule,
     ComponentModule,
   ],
-  declarations: [TabsPage],
+  declarations: [TodoListPage],
 })
-export class TabsPageModule {}
+export class TodoListPageModule {}
