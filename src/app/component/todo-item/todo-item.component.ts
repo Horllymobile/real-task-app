@@ -22,15 +22,18 @@ export class TodoItemComponent implements OnInit {
 
   ngOnInit() {}
 
-  markInProgress(id: string | undefined) {
-    this.todoService.markInProgress(id);
+  markInProgress(item: ITodo) {
+    this.todoService.markInProgress({
+      id: item.id,
+      status: TodoStatus.PROGRESS,
+    });
   }
 
-  markAsDone(id: string | undefined) {
-    this.todoService.markInDone(id);
+  markAsDone(item: ITodo) {
+    this.todoService.markInDone({ id: item.id, status: TodoStatus.DONE });
   }
 
-  deleteTodo(id: string | undefined) {
+  deleteTodo(id: number | undefined) {
     this.todoService.deleteTodo(id);
   }
 

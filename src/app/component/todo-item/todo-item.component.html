@@ -3,7 +3,9 @@
     <ion-label>
       <h1>{{ item.name }}</h1>
       <ion-text color="medium">
-        <p *ngIf="(!checkDueDate(item) && (item.status === todoStatus.DONE)) || item.status === todoStatus.DONE">
+        <p *ngIf="(!checkDueDate(item) && (item.status === todoStatus.DONE))
+          || item.status === todoStatus.PENDING
+          || item.status === todoStatus.PROGRESS">
           Date: {{ item.start_date | date }}</p>
 
         <p *ngIf="(checkDueDate(item) && item.status !== todoStatus.DONE)"
@@ -25,9 +27,9 @@
   </ion-item>
 
   <ion-item-options>
-    <ion-item-option (click)="markInProgress(item.id)" *ngIf="item.status === todoStatus.PENDING" color="secondary">Mark
+    <ion-item-option (click)="markInProgress(item)" *ngIf="item.status === todoStatus.PENDING" color="secondary">Mark
       In Progress</ion-item-option>
-    <ion-item-option (click)="markAsDone(item.id)" *ngIf="item.status === todoStatus.PROGRESS" color="success">Mark Done
+    <ion-item-option (click)="markAsDone(item)" *ngIf="item.status === todoStatus.PROGRESS" color="success">Mark Done
     </ion-item-option>
     <ion-item-option (click)="deleteTodo(item.id)" color="danger">Delete</ion-item-option>
   </ion-item-options>

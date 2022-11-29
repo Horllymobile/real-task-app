@@ -37,15 +37,21 @@ export class TodoService {
     this.socket.emit('searchTodo', name);
   }
 
-  markInProgress(id: string | undefined) {
-    this.socket.emit('markInProgress', id);
+  markInProgress(payload: {
+    id: number | undefined;
+    status: TodoStatus | undefined;
+  }) {
+    this.socket.emit('markInProgress', payload);
   }
 
-  markInDone(id: string | undefined) {
-    this.socket.emit('markAsDone', id);
+  markInDone(payload: {
+    id: number | undefined;
+    status: TodoStatus | undefined;
+  }) {
+    this.socket.emit('markAsDone', payload);
   }
 
-  deleteTodo(id: string | undefined) {
+  deleteTodo(id: number | undefined) {
     this.socket.emit('deleteTodo', id);
   }
 }
